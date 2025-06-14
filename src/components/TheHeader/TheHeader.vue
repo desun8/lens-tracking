@@ -2,6 +2,6 @@
 
 <template>
   <header>
-    <h1>Lense Track</h1>
+    <h1>Lens Tracking</h1>
   </header>
 </template>
