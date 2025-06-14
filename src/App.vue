@@ -1,47 +1,27 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import TheHeader from './components/TheHeader/TheHeader.vue'
+import Progress from './components/Progress/Progress.vue'
+import BtnCheck from './components/BtnCheck.vue'
+import LensesControls from './components/LensesControls/LensesControls.vue'
+import UserSettings from './components/UserSettings/UserSettings.vue'
+import { useStore } from './useStore'
+
+const { state, hasLensesPair } = useStore()
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
+  <TheHeader />
   <main>
-    <TheWelcome />
+    <Progress :curr-days="state.lensesCurrDays" :total-days="state.lensesTotalDays" />
+
+    <div class="mt-5 grid justify-center justify-items-center gap-3">
+      <BtnCheck
+        class="col-span-2 w-32"
+        :disabled="!hasLensesPair || state.lensesCurrDays === state.lensesTotalDays"
+      />
+
+      <LensesControls class="col-span-1" :has-pair="hasLensesPair" />
+      <UserSettings class="col-span-1" />
+    </div>
   </main>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
