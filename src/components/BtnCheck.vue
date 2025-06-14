@@ -16,5 +16,5 @@ function check() {
 </script>
 
 <template>
-  <AppButton :disabled @click="check">Check</AppButton>
+  <AppButton :disabled @click="check">Check Progress</AppButton>
 </template>

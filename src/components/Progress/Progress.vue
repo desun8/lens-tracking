@@ -11,7 +11,7 @@ const { totalDays, currDays } = defineProps<{
 const hasLenses = computed(() => totalDays !== null && totalDays !== undefined)
 
 const outputText = computed(() =>
-  hasLenses.value ? numFormatter.format(totalDays! - currDays) : 'You dont add lenses pair',
+  hasLenses.value ? numFormatter.format(totalDays! - currDays) : 'No lens pair added',
 )
 
 const progress = computed(() => {

@@ -12,7 +12,7 @@ function showDialog() {
 </script>
 
 <template>
-  <AppButton @click="showDialog"> Add new pair </AppButton>
+  <AppButton @click="showDialog"> Add New Pair </AppButton>
 
   <DialogAddLensesPair ref="dialog" />
 </template>

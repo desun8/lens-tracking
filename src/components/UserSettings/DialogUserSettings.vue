@@ -47,7 +47,7 @@ defineExpose({
     <template #ok-label>Save</template>
 
     <div>
-      <AppSelect v-model="duration" :items="durationVariants">Set leneses wear duration</AppSelect>
+      <AppSelect v-model="duration" :items="durationVariants">Set Lens Wear Duration</AppSelect>
     </div>
   </AppDialog>
 </template>

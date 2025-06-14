@@ -59,7 +59,7 @@ defineExpose({
         type="button"
         @click="cancel"
       >
-        <span class="sr-only">Закрыть.</span>
+        <span class="sr-only">Close</span>
       </button>
     </dialog>
   </Teleport>

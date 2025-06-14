@@ -12,6 +12,6 @@ function showDialog() {
 </script>
 
 <template>
-  <AppBtn @click="showDialog">Config</AppBtn>
+  <AppBtn @click="showDialog">Settings</AppBtn>
   <DialogUserSettings ref="dialog" />
 </template>

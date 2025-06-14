@@ -41,15 +41,15 @@ defineExpose({
 
 <template>
   <AppDialog ref="dialog" @apply="setTotalDays">
-    <template #title>Add new lenses pair</template>
+    <template #title>Add New Lens Pair</template>
     <template #ok-label>Add</template>
 
     <div>
       <AppInput
         v-model="totalDays"
         type="number"
-        :error-msg="hasError ? 'Value can\'t be lesser then 1' : ''"
-        ><template #label>Lenses durations:</template></AppInput
+        :error-msg="hasError ? 'Value must be greater than 0' : ''"
+        ><template #label>Lens Duration:</template></AppInput
       >
     </div>
   </AppDialog>

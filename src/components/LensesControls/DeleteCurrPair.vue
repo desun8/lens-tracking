@@ -5,7 +5,7 @@ import AppButton from '../AppButton.vue'
 const { state } = useStore()
 
 function deleteLensesPair() {
-  if (confirm('Are you sure you want to delete current lenses pair?')) {
+  if (confirm('Are you sure you want to delete the current lens pair?')) {
     state.lensesTotalDays = null
     state.lensesCurrDays = 0
   }
@@ -13,5 +13,5 @@ function deleteLensesPair() {
 </script>
 
 <template>
-  <AppButton @click="deleteLensesPair"> Delete current pair </AppButton>
+  <AppButton @click="deleteLensesPair"> Delete Current Pair </AppButton>
 </template>
