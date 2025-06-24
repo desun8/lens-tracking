@@ -1,5 +1,5 @@
 import { useStorage } from '@vueuse/core'
-import { ref, reactive, computed, watch } from 'vue'
+import { reactive, computed, watch } from 'vue'
 
 export const LensesWearSteps = {
   DAY: 'day',
@@ -20,7 +20,7 @@ const localState = useStorage<StoreType>('lensestrack-state', {
   lensesCurrDays: 0,
   step: LensesWearSteps.DAY,
   uuid: crypto.randomUUID(),
-  timestamp: Date.now()
+  timestamp: Date.now(),
 })
 
 const state = reactive<StoreType>(localState.value)
