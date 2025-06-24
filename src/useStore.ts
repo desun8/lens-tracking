@@ -1,5 +1,5 @@
 import { useStorage } from '@vueuse/core'
-import { reactive, computed, watch } from 'vue'
+import { ref, reactive, computed, watch } from 'vue'
 
 export const LensesWearSteps = {
   DAY: 'day',
@@ -11,18 +11,22 @@ type StoreType = {
   lensesTotalDays: number | null
   lensesCurrDays: number
   step: (typeof LensesWearSteps)[keyof typeof LensesWearSteps]
+  uuid: string
+  timestamp: number
 }
 
 const localState = useStorage<StoreType>('lensestrack-state', {
   lensesTotalDays: null,
   lensesCurrDays: 0,
   step: LensesWearSteps.DAY,
+  uuid: crypto.randomUUID(),
+  timestamp: Date.now()
 })
 
 const state = reactive<StoreType>(localState.value)
 
 watch(state, () => {
-  localState.value = state
+  localState.value = { ...state, timestamp: Date.now() }
 })
 
 const stepValue = computed(() => {
