@@ -4,7 +4,9 @@ import DialogSignUp from '../Auth/DialogSignUp.vue'
 import DialogSignIn from '../Auth/DialogSignIn.vue'
 import { useTemplateRef } from 'vue'
 import { useAuth } from '@/useAuth'
+import { useStore } from '@/useStore'
 
+const { resetState } = useStore()
 const { isAuth, signOut } = useAuth()
 
 const dialogSignUpRef = useTemplateRef<InstanceType<typeof DialogSignUp>>('dialogSignUp')
@@ -19,12 +21,17 @@ function showSignInDialog() {
   if (!dialogSignInRef.value) return
   dialogSignInRef.value.isOpen = true
 }
+
+async function logout() {
+  await signOut()
+  resetState()
+}
 </script>
 
 <template>
   <header class="flex items-center">
     <h1>Lens Tracking</h1>
-    <AppButton v-if="isAuth" class="ml-auto" @click="signOut">Logout</AppButton>
+    <AppButton v-if="isAuth" class="ml-auto" @click="logout">Logout</AppButton>
 
     <template v-else>
       <AppButton class="ml-auto" variant="text" @click="showSignInDialog">Sign In</AppButton>

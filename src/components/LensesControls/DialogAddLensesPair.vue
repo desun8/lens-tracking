@@ -11,10 +11,18 @@ const isOpen = ref(false)
 const dialogOpen = computed(() => dialogRef.value?.isOpen)
 
 const totalDays = ref(0)
-const hasError = ref(false)
+const errorMsg = ref('')
+
 watch(totalDays, () => {
   if (totalDays.value < 0) totalDays.value = 0
-  if (hasError.value && totalDays.value > 0) hasError.value = false
+  
+  if (totalDays.value <= 0) {
+    errorMsg.value = 'Value must be greater than 0'
+  } else if (totalDays.value > 365) {
+    errorMsg.value = 'Maximum 365 days allowed'
+  } else {
+    errorMsg.value = ''
+  }
 })
 
 watch(isOpen, () => {
@@ -27,10 +35,10 @@ watch(dialogOpen, () => {
 })
 
 function setTotalDays() {
-  hasError.value = totalDays.value <= 0
-  if (hasError.value) return
+  if (errorMsg.value) return
 
   state.lensesTotalDays = totalDays.value
+  state.lensesCurrDays = 0 // Сбрасываем текущие дни при добавлении новой пары
   isOpen.value = false
 }
 
@@ -48,8 +56,8 @@ defineExpose({
       <AppInput
         v-model="totalDays"
         type="number"
-        :error-msg="hasError ? 'Value must be greater than 0' : ''"
-        ><template #label>Lens Duration:</template></AppInput
+        :error-msg="errorMsg"
+        ><template #label>Lens Duration (days):</template></AppInput
       >
     </div>
   </AppDialog>

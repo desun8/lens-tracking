@@ -22,6 +22,7 @@ const auth = useAuth()
 const email = ref('')
 const password = ref('')
 const repeatPassword = ref('')
+const errorMessage = ref('')
 
 const isPasswordsEqual = computed(
   () => password.value === repeatPassword.value && password.value.length,
@@ -30,9 +31,14 @@ const isPasswordsEqual = computed(
 async function signUp() {
   if (!isPasswordsEqual.value) return
 
+  errorMessage.value = ''
   const error = await auth.signUp(email.value, password.value)
   if (error) {
-    alert(error.message)
+    if (error.message.includes('already registered')) {
+      errorMessage.value = 'This email is already registered. Please use a different email or try signing in.'
+    } else {
+      errorMessage.value = error.message
+    }
     return
   }
 
@@ -50,7 +56,7 @@ defineExpose({
     <template #ok-label>Sign up</template>
 
     <div>
-      <AppInput v-model="email" type="email">
+      <AppInput v-model="email" type="email" :error-msg="errorMessage">
         <template #label>Email</template>
       </AppInput>
       <AppInput v-model="password" type="password">

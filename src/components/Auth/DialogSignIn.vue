@@ -3,6 +3,7 @@ import { computed, ref, useTemplateRef, watch } from 'vue'
 import AppDialog from '../AppDialog.vue'
 import AppInput from '../AppInput.vue'
 import { useAuth } from '@/useAuth'
+import { useStore } from '@/useStore'
 
 const dialogRef = useTemplateRef<InstanceType<typeof AppDialog>>('dialog')
 
@@ -18,6 +19,8 @@ watch(dialogOpen, () => {
   if (dialogOpen.value === false && isOpen.value) isOpen.value = false
 })
 
+const { mergeUserData } = useStore()
+
 const auth = useAuth()
 const email = ref('')
 const password = ref('')
@@ -29,6 +32,8 @@ async function signIn() {
     return
   }
 
+  const userData = await auth.loadUserData()
+  if (userData) mergeUserData(userData)
   isOpen.value = false
 }
 
