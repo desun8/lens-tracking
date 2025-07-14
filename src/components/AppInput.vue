@@ -32,7 +32,7 @@ const hasError = computed(() => !!errorMsg)
         :type
         :placeholder
         :disabled
-        class="w-full px-4 py-3 text-sm bg-transparent border rounded-lg transition-all duration-200 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 cursor-text input-hover"
+        class="w-full px-4 py-3 text-base bg-transparent border rounded-lg transition-all duration-200 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 cursor-text input-hover"
         :class="{
           'border-destructive focus:ring-destructive input-error': hasError,
           'border-input': !hasError,
