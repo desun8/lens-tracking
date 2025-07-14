@@ -41,7 +41,7 @@ function setTotalDays() {
   if (errorMsg.value) return
 
   state.lensesTotalDays = totalDays.value
-  state.lensesCurrDays = 0 // Сбрасываем текущие дни при добавлении новой пары
+  state.lensesCurrDays = 0 // Reset current days when adding a new pair
   isOpen.value = false
 }
 
@@ -52,7 +52,7 @@ defineExpose({
 
 <template>
   <AppDialog ref="dialog" @apply="setTotalDays">
-    <template #title>Add New Lens Pair</template>
+    <template #title>Add New Pair</template>
     <template #ok-label>Add</template>
 
     <div class="space-y-4">
