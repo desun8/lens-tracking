@@ -13,9 +13,9 @@ const dialogOpen = computed(() => dialogRef.value?.isOpen)
 const totalDays = ref(0)
 const errorMsg = ref('')
 
-watch(totalDays, () => {
+function validateTotalDays() {
   if (totalDays.value < 0) totalDays.value = 0
-  
+
   if (totalDays.value <= 0) {
     errorMsg.value = 'Value must be greater than 0'
   } else if (totalDays.value > 365) {
@@ -23,7 +23,9 @@ watch(totalDays, () => {
   } else {
     errorMsg.value = ''
   }
-})
+}
+
+watch(totalDays, validateTotalDays)
 
 watch(isOpen, () => {
   if (!dialogRef.value) return
@@ -35,6 +37,7 @@ watch(dialogOpen, () => {
 })
 
 function setTotalDays() {
+  validateTotalDays()
   if (errorMsg.value) return
 
   state.lensesTotalDays = totalDays.value
@@ -52,13 +55,18 @@ defineExpose({
     <template #title>Add New Lens Pair</template>
     <template #ok-label>Add</template>
 
-    <div>
+    <div class="space-y-4">
+      <div class="text-sm text-slate-600 dark:text-slate-400">
+        Enter the recommended wear duration for your new contact lenses:
+      </div>
       <AppInput
         v-model="totalDays"
         type="number"
         :error-msg="errorMsg"
-        ><template #label>Lens Duration (days):</template></AppInput
+        placeholder="e.g., 30"
       >
+        <template #label>Lens Duration (days)</template>
+      </AppInput>
     </div>
   </AppDialog>
 </template>

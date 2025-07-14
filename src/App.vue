@@ -10,18 +10,25 @@ const { state, hasLensesPair } = useStore()
 </script>
 
 <template>
-  <TheHeader />
-  <main>
-    <Progress :curr-days="state.lensesCurrDays" :total-days="state.lensesTotalDays" />
-
-    <div class="mt-5 grid justify-center justify-items-center gap-3">
-      <BtnCheck
-        class="col-span-2 w-32"
-        :disabled="!hasLensesPair || state.lensesCurrDays === state.lensesTotalDays"
+  <div class="min-h-screen bg-gradient-to-br from-background via-accent/5 to-background">
+    <TheHeader />
+    <main class="space-y-6">
+      <Progress 
+        :curr-days="state.lensesCurrDays" 
+        :total-days="state.lensesTotalDays" 
+        class="animate-fade-in" 
       />
 
-      <LensesControls class="col-span-1" :has-pair="hasLensesPair" />
-      <UserSettings class="col-span-1" />
-    </div>
-  </main>
+      <div class="flex flex-col items-center gap-4 animate-fade-in">
+        <BtnCheck
+          :disabled="!hasLensesPair || state.lensesCurrDays === state.lensesTotalDays"
+        />
+
+        <div class="flex flex-col sm:flex-row gap-3 w-full max-w-xs button-group">
+          <LensesControls :has-pair="hasLensesPair" class="flex-1" />
+          <UserSettings class="flex-1" />
+        </div>
+      </div>
+    </main>
+  </div>
 </template>

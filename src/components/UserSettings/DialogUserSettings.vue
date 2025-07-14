@@ -46,8 +46,13 @@ defineExpose({
     <template #title>Settings</template>
     <template #ok-label>Save</template>
 
-    <div>
-      <AppSelect v-model="duration" :items="durationVariants">Set Lens Wear Duration</AppSelect>
+    <div class="space-y-4">
+      <div class="text-sm text-slate-600 dark:text-slate-400">
+        Choose how much progress to add each time you check:
+      </div>
+      <AppSelect v-model="duration" :items="durationVariants">
+        <template #default>Lens Wear Duration</template>
+      </AppSelect>
     </div>
   </AppDialog>
 </template>
