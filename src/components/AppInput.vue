@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { useId, ref, computed } from 'vue'
 
-const { type = 'text', disabled = false, errorMsg } = defineProps<{
+const {
+  type = 'text',
+  disabled = false,
+  errorMsg,
+} = defineProps<{
   placeholder?: string
   type?: 'text' | 'number' | 'email' | 'password'
   errorMsg?: string
@@ -12,7 +16,9 @@ const value = defineModel<string | number>({ required: true })
 const id = useId()
 const inputRef = ref<HTMLInputElement>()
 
-const hasValue = computed(() => value.value !== '' && value.value !== null && value.value !== undefined)
+const hasValue = computed(
+  () => value.value !== '' && value.value !== null && value.value !== undefined,
+)
 const hasError = computed(() => !!errorMsg)
 </script>
 
@@ -30,7 +36,7 @@ const hasError = computed(() => !!errorMsg)
         :class="{
           'border-destructive focus:ring-destructive input-error': hasError,
           'border-input': !hasError,
-          'pt-6': $slots.label
+          'pt-6': $slots.label,
         }"
       />
       <label
@@ -39,20 +45,17 @@ const hasError = computed(() => !!errorMsg)
         class="absolute left-4 transition-all duration-200 text-slate-500 dark:text-slate-400 pointer-events-none group-hover:text-indigo-600 dark:group-hover:text-indigo-400"
         :class="{
           'top-2 text-xs': hasValue || inputRef?.matches?.(':focus'),
-          'top-3 text-sm': !hasValue && !inputRef?.matches?.(':focus')
+          'top-3 text-sm': !hasValue && !inputRef?.matches?.(':focus'),
         }"
       >
         <slot name="label"></slot>
       </label>
     </div>
-    <div
-      v-show="hasError"
-      class="flex items-center gap-1 text-xs text-destructive animate-fade-in"
-    >
+    <div v-show="hasError" class="flex items-center gap-1 text-xs text-destructive animate-fade-in">
       <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="12" cy="12" r="10"/>
-        <line x1="12" y1="8" x2="12" y2="12"/>
-        <line x1="12" y1="16" x2="12.01" y2="16"/>
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="8" x2="12" y2="12" />
+        <line x1="12" y1="16" x2="12.01" y2="16" />
       </svg>
       {{ errorMsg }}
     </div>

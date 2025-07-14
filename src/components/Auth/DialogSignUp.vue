@@ -88,8 +88,12 @@ async function signUp() {
   try {
     const error = await auth.signUp(email.value, password.value)
     if (error) {
-      if (error.message.includes('already registered') || error.message.includes('User already registered')) {
-        errorMessage.value = 'This email is already registered. Please use a different email or try signing in.'
+      if (
+        error.message.includes('already registered') ||
+        error.message.includes('User already registered')
+      ) {
+        errorMessage.value =
+          'This email is already registered. Please use a different email or try signing in.'
       } else if (error.message.includes('Invalid email')) {
         errorMessage.value = 'Please enter a valid email address'
       } else if (error.message.includes('Password')) {
@@ -126,19 +130,32 @@ defineExpose({
   <AppDialog ref="dialog" @apply="signUp" @cancel="clearForm" :disabled="isLoading">
     <template #title>
       <div class="flex items-center gap-2">
-        <svg class="w-5 h-5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-          <circle cx="8.5" cy="7" r="4"/>
-          <line x1="20" y1="8" x2="20" y2="14"/>
-          <line x1="23" y1="11" x2="17" y2="11"/>
+        <svg
+          class="w-5 h-5 text-primary"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="8.5" cy="7" r="4" />
+          <line x1="20" y1="8" x2="20" y2="14" />
+          <line x1="23" y1="11" x2="17" y2="11" />
         </svg>
         Sign up
       </div>
     </template>
     <template #ok-label>
       <div class="flex items-center gap-2">
-        <svg v-if="isLoading" class="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 12a9 9 0 11-6.219-8.56"/>
+        <svg
+          v-if="isLoading"
+          class="w-4 h-4 animate-spin"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M21 12a9 9 0 11-6.219-8.56" />
         </svg>
         {{ isLoading ? 'Creating account...' : 'Sign up' }}
       </div>
@@ -154,10 +171,21 @@ defineExpose({
       <AppInput v-model="email" type="email" placeholder="Enter your email" :disabled="isLoading">
         <template #label>Email</template>
       </AppInput>
-      <AppInput v-model="password" type="password" placeholder="Create a password" :disabled="isLoading">
+      <AppInput
+        v-model="password"
+        type="password"
+        placeholder="Create a password"
+        :disabled="isLoading"
+      >
         <template #label>Password</template>
       </AppInput>
-      <AppInput v-model="repeatPassword" type="password" placeholder="Confirm your password" :error-msg="passwordError" :disabled="isLoading">
+      <AppInput
+        v-model="repeatPassword"
+        type="password"
+        placeholder="Confirm your password"
+        :error-msg="passwordError"
+        :disabled="isLoading"
+      >
         <template #label>Repeat Password</template>
       </AppInput>
     </div>

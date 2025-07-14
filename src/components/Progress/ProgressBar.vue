@@ -3,14 +3,9 @@ import { computed } from 'vue'
 
 const props = defineProps<{ progress: number }>()
 
-const startDeg = 45
-const endDeg = 225
-
-const rotate = computed(() => startDeg + (endDeg - startDeg) * (props.progress / 100))
 const strokeDasharray = computed(() => {
   const radius = 45
   const circumference = 2 * Math.PI * radius
-  const offset = circumference - (props.progress / 100) * circumference
   return `${circumference} ${circumference}`
 })
 
@@ -54,7 +49,9 @@ const strokeDashoffset = computed(() => {
     </svg>
     <div class="absolute inset-0 flex items-center justify-center">
       <div class="text-center">
-        <div class="text-xl sm:text-2xl font-bold text-primary progress-text">{{ Math.round(progress) }}%</div>
+        <div class="text-xl sm:text-2xl font-bold text-primary progress-text">
+          {{ Math.round(progress) }}%
+        </div>
         <div class="text-xs text-muted-foreground">remaining</div>
       </div>
     </div>

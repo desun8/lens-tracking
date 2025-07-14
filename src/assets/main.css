@@ -55,7 +55,11 @@ body {
   @apply font-sans antialiased;
   background-color: rgb(var(--background));
   color: rgb(var(--foreground));
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 #app {
@@ -66,23 +70,23 @@ body {
   #app {
     @apply px-4 py-6;
   }
-  
+
   .progress-container {
     @apply px-2;
   }
-  
+
   .button-group {
     @apply flex-col gap-3;
   }
-  
+
   .header-title {
     @apply text-xl;
   }
-  
+
   .progress-circle {
     @apply w-28 h-28;
   }
-  
+
   .progress-text {
     @apply text-xl;
   }
@@ -160,7 +164,9 @@ body {
 
 .card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .button-hover {
@@ -170,23 +176,27 @@ body {
 
 .button-hover:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 4px 12px -2px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .button-hover:active {
   transform: translateY(0);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 /* Cursor pointer для всех интерактивных элементов */
 button,
-[role="button"],
+[role='button'],
 .cursor-pointer {
   cursor: pointer;
 }
 
 a,
-[role="link"] {
+[role='link'] {
   cursor: pointer;
 }
 
@@ -201,7 +211,9 @@ a,
 
 .input-hover:hover {
   border-color: rgb(99, 102, 241);
-  box-shadow: 0 1px 3px 0 rgba(99, 102, 241, 0.1), 0 1px 2px 0 rgba(99, 102, 241, 0.06);
+  box-shadow:
+    0 1px 3px 0 rgba(99, 102, 241, 0.1),
+    0 1px 2px 0 rgba(99, 102, 241, 0.06);
 }
 
 .input-hover:focus {
@@ -220,7 +232,9 @@ a,
 
 .select-hover:hover {
   border-color: rgb(99, 102, 241);
-  box-shadow: 0 1px 3px 0 rgba(99, 102, 241, 0.1), 0 1px 2px 0 rgba(99, 102, 241, 0.06);
+  box-shadow:
+    0 1px 3px 0 rgba(99, 102, 241, 0.1),
+    0 1px 2px 0 rgba(99, 102, 241, 0.06);
 }
 
 .select-hover:focus {
@@ -229,12 +243,12 @@ a,
 }
 
 /* Убираем стрелки у number input */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }

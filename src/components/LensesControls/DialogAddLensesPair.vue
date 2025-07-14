@@ -59,12 +59,7 @@ defineExpose({
       <div class="text-sm text-slate-600 dark:text-slate-400">
         Enter the recommended wear duration for your new contact lenses:
       </div>
-      <AppInput
-        v-model="totalDays"
-        type="number"
-        :error-msg="errorMsg"
-        placeholder="e.g., 30"
-      >
+      <AppInput v-model="totalDays" type="number" :error-msg="errorMsg" placeholder="e.g., 30">
         <template #label>Lens Duration (days)</template>
       </AppInput>
     </div>

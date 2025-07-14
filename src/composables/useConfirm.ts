@@ -20,7 +20,7 @@ export function useConfirm() {
       confirmText: 'Confirm',
       cancelText: 'Cancel',
       variant: 'destructive',
-      ...opts
+      ...opts,
     }
 
     isOpen.value = true
@@ -47,6 +47,6 @@ export function useConfirm() {
     options,
     confirm,
     handleConfirm,
-    handleCancel
+    handleCancel,
   }
 }

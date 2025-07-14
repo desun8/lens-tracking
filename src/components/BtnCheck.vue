@@ -19,15 +19,16 @@ const check = useDebounceFn(checkProgress, 500)
 </script>
 
 <template>
-  <AppButton 
-    :disabled 
-    @click="check" 
-    class="shadow-glow button-hover group"
-    size="lg"
-  >
+  <AppButton :disabled @click="check" class="shadow-glow button-hover group" size="lg">
     <div class="flex items-center gap-2">
-      <svg class="w-5 h-5 transition-transform duration-200 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="20,6 9,17 4,12"/>
+      <svg
+        class="w-5 h-5 transition-transform duration-200 group-hover:scale-110"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <polyline points="20,6 9,17 4,12" />
       </svg>
       <span class="font-medium">Check Progress</span>
     </div>

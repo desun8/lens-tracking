@@ -43,7 +43,9 @@ defineExpose({
       @keydown.escape="cancel"
       @keydown.enter="apply"
     >
-      <div class="mx-auto flex flex-col gap-6 w-full max-w-md min-w-96 p-6 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl glass animate-scale-in bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">
+      <div
+        class="mx-auto flex flex-col gap-6 w-full max-w-md min-w-96 p-6 border border-slate-200 dark:border-slate-700 shadow-lg rounded-xl glass animate-scale-in bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100"
+      >
         <div class="flex items-center justify-between">
           <h2 v-if="$slots.title" class="text-lg font-semibold text-slate-900 dark:text-slate-100">
             <slot name="title"></slot>
@@ -53,9 +55,15 @@ defineExpose({
             type="button"
             @click="cancel"
           >
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="18" y1="6" x2="6" y2="18"/>
-              <line x1="6" y1="6" x2="18" y2="18"/>
+            <svg
+              class="w-4 h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
             <span class="sr-only">Close</span>
           </button>
@@ -77,4 +85,3 @@ defineExpose({
     </dialog>
   </Teleport>
 </template>
-

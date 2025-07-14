@@ -24,7 +24,6 @@ const defaultState = {
   step: LensesWearSteps.DAY,
   uuid: crypto.randomUUID(),
   timestamp: Date.now(),
-
 }
 
 const localState = useStorage<Store>('lensestrack-state', { ...defaultState })
@@ -38,7 +37,7 @@ function resetState() {
   Object.assign(state, {
     ...defaultState,
     uuid: crypto.randomUUID(),
-    timestamp: Date.now()
+    timestamp: Date.now(),
   })
 }
 
@@ -57,7 +56,7 @@ const hasLensesPair = computed(() => state.lensesTotalDays !== null)
 
 function mergeUserData(cloudData: UsersTableItem) {
   const localData = state
-  if (!cloudData) return;
+  if (!cloudData) return
 
   // Если UUID не совпадают - полностью перезаписываем данные из облака
   if (cloudData.uuid !== localData.uuid) {
@@ -67,7 +66,7 @@ function mergeUserData(cloudData: UsersTableItem) {
       lensesCurrDays: cloudData.lenses_current_days,
       step: cloudData.options_step,
       uuid: cloudData.uuid,
-      timestamp: cloudData.timestamp
+      timestamp: cloudData.timestamp,
     })
     return
   }
@@ -79,7 +78,7 @@ function mergeUserData(cloudData: UsersTableItem) {
       lensesCurrDays: cloudData.lenses_current_days,
       step: cloudData.options_step,
       uuid: cloudData.uuid,
-      timestamp: cloudData.timestamp
+      timestamp: cloudData.timestamp,
     })
   } else {
     console.log('Local data is up to date')
@@ -104,7 +103,6 @@ async function backgroundSync() {
   }
 }
 
-
 export const useStore = () => {
   const { isAuth, saveUserData } = useAuth()
 
@@ -125,26 +123,33 @@ export const useStore = () => {
   // Таймер автосинхронизации каждые 5 минут
   let syncInterval: ReturnType<typeof setInterval> | null = null
 
-  watch(isAuth, (authenticated) => {
-    if (authenticated) {
-      syncInterval = setInterval(() => {
-        if (isAuth.value) {
-          backgroundSync()
+  watch(
+    isAuth,
+    (authenticated) => {
+      if (authenticated) {
+        syncInterval = setInterval(
+          () => {
+            if (isAuth.value) {
+              backgroundSync()
+            }
+          },
+          5 * 60 * 1000,
+        ) // 5 min
+      } else {
+        if (syncInterval) {
+          clearInterval(syncInterval)
+          syncInterval = null
         }
-      }, 5 * 60 * 1000) // 5 min
-    } else {
-      if (syncInterval) {
-        clearInterval(syncInterval)
-        syncInterval = null
       }
-    }
-  }, { immediate: true })
+    },
+    { immediate: true },
+  )
 
   return {
     state,
     stepValue,
     hasLensesPair,
     mergeUserData,
-    resetState
+    resetState,
   }
 }
